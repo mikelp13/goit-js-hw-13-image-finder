@@ -6,10 +6,11 @@ const baseUrl = 'https://pixabay.com/api/?image_type=photo&orientation=horizonta
 // page: 1,
 
   
-export function fetchImages(inputValue) {
-const url = `${baseUrl}&q=${inputValue}&page=${1}&per_page=12&key=${apiKey}`;
+export function fetchImages(searchQuery, page=1) {
+const url = `${baseUrl}&q=${searchQuery}&page=${page}&per_page=12&key=${apiKey}`;
 return fetch(url)
   .then(response => response.json())
+  .then(({hits}) => hits);
 }
 
 

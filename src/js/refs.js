@@ -3,4 +3,5 @@ export const refs = {
   // input:document.querySelector('.search-input'),
   // btn: document.querySelector('.search-form__button')
   galleryList: document.querySelector('.gallery'),
+  loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 }
