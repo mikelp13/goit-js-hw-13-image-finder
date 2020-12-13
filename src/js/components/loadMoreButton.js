@@ -14,4 +14,8 @@ export const loadImagesBtn = {
     refs.loadMoreBtnLabel.textContent = 'Loading...';
     refs.loadMoreBtnSpinner.classList.remove('is-hidden');
   },
+  
+  hideBtn(){
+    refs.loadMoreBtn.classList.add('is-hidden');
+  }
 };
