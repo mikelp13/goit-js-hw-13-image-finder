@@ -1,39 +1,36 @@
 import { refs } from './js/refs';
 import imageService from './js/apiService';
 import { updateMarkup } from './js/updateMarkup';
+import {scrollPage} from './js/scroll';
+import {loadImagesBtn} from './js/components/loadMoreButton'
 import 'material-design-icons/iconfont/material-icons.css';
 import './styles.css';
 
- refs.loadMoreBtn.classList.add('is-hidden');
 
-refs.searchForm.addEventListener('submit', event => {
+refs.searchForm.addEventListener('submit', onSearchFormSubmit);
+refs.loadMoreBtn.addEventListener('click', fetchImagesList);
+
+function onSearchFormSubmit(event){
   event.preventDefault();
   const form = event.currentTarget;
   imageService.query = form.elements.query.value;
-  refs.galleryList.innerHTML = '';
+  clearAll()
   form.reset(); //clear input value
   imageService.resetPage();
+  fetchImagesList();
+}
 
+
+function fetchImagesList(){
+  loadImagesBtn.disabled()
   imageService.fetchImages().then(hits => {
     updateMarkup(hits);
-   refs.loadMoreBtn.classList.remove('is-hidden');
+    scrollPage();
+    loadImagesBtn.enabled();
   });
-});
+}
 
-refs.loadMoreBtn.addEventListener('click', () => {
-  refs.loadMoreBtn.disabled = true;
-  refs.loadMoreBtnLabel.textContent = 'Loading...'
-  refs.loadMoreBtnSpinner.classList.remove('is-hidden')
-  
-  imageService.fetchImages().then(hits => {
-    updateMarkup(hits);
-    refs.loadMoreBtn.disabled = false;
-    refs.loadMoreBtnLabel.textContent = 'Load more'
-    refs.loadMoreBtnSpinner.classList.add('is-hidden')
-    
-    window.scrollTo({
-      top: document.documentElement.offsetHeight,
-      behavior: 'smooth',
-    });
-  });
-});
+function clearAll(){
+  refs.galleryList.innerHTML = '';
+}
+
