@@ -6,18 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Image finder</title>
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
   <form class="search-form" id="search-form">
     <input type="text" class="search-input" name="query" autocomplete="off" placeholder="Search images..." />
-    <button type="submit" class="search-form__button">Search</button>
+    <button type="submit" class="search-form__button btn btn-primary">Search</button>
   </form>
+  
 
   <ul class="gallery"></ul>
 
-  <button class="btn" type="button" data-action="load-more"> Load more</button>
+  <button class="btn btn-primary button" type="button" data-action="load-more" >
+    <span class="spinner-border spinner-border-sm spinner is-hidden" role="status" aria-hidden="true"></span>
+    <span class="label">Load more</span> 
+  </button>
+
 </body>
 
 </html>
