@@ -3,7 +3,8 @@ import imageService from './js/apiService';
 import { updateMarkup } from './js/updateMarkup';
 import {scrollPage} from './js/scroll';
 import {loadImagesBtn} from './js/components/loadMoreButton'
-import { onOpenModal } from './js/components/modal';
+import { onOpenModal} from './js/components/modal';
+
 import 'material-design-icons/iconfont/material-icons.css';
 import './styles.css';
 
