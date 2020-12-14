@@ -2,8 +2,7 @@ import { refs } from '../refs';
 
 export const loadImagesBtn = {
   enabled() {
-    refs.loadMoreBtn.classList.remove('is-hidden');
-
+    this.showBtn();
     refs.loadMoreBtn.disabled = false;
     refs.loadMoreBtnLabel.textContent = 'Load more';
     refs.loadMoreBtnSpinner.classList.add('is-hidden');
@@ -15,6 +14,10 @@ export const loadImagesBtn = {
     refs.loadMoreBtnSpinner.classList.remove('is-hidden');
   },
   
+  showBtn(){
+    refs.loadMoreBtn.classList.remove('is-hidden');
+  },
+
   hideBtn(){
     refs.loadMoreBtn.classList.add('is-hidden');
   }
