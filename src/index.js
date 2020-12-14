@@ -16,11 +16,11 @@ function onSearchFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
   imageService.query = form.elements.query.value;
- if(!imageService.query){
-   queryInfo();
-   return
- }
- clearGalleryList();
+  if (!imageService.query) {
+    queryInfo();
+    return;
+  }
+  clearGalleryList();
   form.reset(); //clear input value
   imageService.resetPage();
   fetchImagesList();
@@ -28,24 +28,25 @@ function onSearchFormSubmit(event) {
 
 function fetchImagesList() {
   loadImagesBtn.disabled();
-  imageService.fetchImages().then(hits => {
-    updateMarkup(hits);
-    scrollPage();
-    loadImagesBtn.enabled();
-    return hits
-  }).then(hits => inputVerefication(hits))
- 
+  imageService
+    .fetchImages()
+    .then(hits => {
+      updateMarkup(hits);
+      scrollPage();
+      loadImagesBtn.enabled();
+      return hits;
+    })
+    .then(hits => responseVerefication(hits))
+    .catch(error => searchingError());
 }
 
 function clearGalleryList() {
   refs.galleryList.innerHTML = '';
 }
 
-function inputVerefication(hits) {
-  if (hits.length === 0){
-    loadImagesBtn.hideBtn() 
+function responseVerefication(hits) {
+  if (hits.length === 0) {
+    loadImagesBtn.hideBtn();
     queryNotice();
-  } else if (hits.status >= 400){
-    searchingError();
-  } 
+  }
 }
